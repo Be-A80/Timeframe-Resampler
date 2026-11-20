@@ -139,3 +139,11 @@ with st.expander("Berechnete OHLCV-Tabelle & CSV-Export"):
     st.dataframe(chart_df.head(100), use_container_width=True)
     csv = chart_df.to_csv().encode('utf-8')
     st.download_button("Als CSV herunterladen", data=csv, file_name=f"{symbol.replace('/', '_')}_{custom_tf_label}.csv", mime="text/csv")
+
+if market_type == "Krypto (CCXT)":
+    exchange = st.sidebar.selectbox(
+        "Börse", 
+        ["okx", "kucoin", "bybit", "coinbase", "binance", "kraken"], 
+        index=0,
+        help="Hinweis: 'kraken' liefert nur die letzten 720 Kerzen. Für historische Daten ab 2022 'okx' oder 'kucoin' nutzen."
+    )
